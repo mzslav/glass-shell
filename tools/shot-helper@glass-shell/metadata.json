@@ -1,0 +1,7 @@
+{
+  "name": "Glass Shell preview screenshot helper",
+  "description": "Test-only, used by tools/preview.sh inside a throwaway headless shell. Stays on at the lock screen, where Glass Shell itself is off.",
+  "uuid": "shot-helper@glass-shell",
+  "shell-version": ["46", "47", "48", "49", "50", "51"],
+  "session-modes": ["user", "unlock-dialog"]
+}

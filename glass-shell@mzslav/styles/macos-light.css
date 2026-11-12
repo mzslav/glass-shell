@@ -1,0 +1,131 @@
+/*
+ * Glass Shell — light-mode colours for styles/macos.css.
+ * Loaded on top of it while the system style is Light (custom/themeMode.js).
+ */
+
+.quick-slider { background-color: rgba(0, 0, 0, 0.06); }
+.quick-slider .icon-button:hover { background-color: rgba(0, 0, 0, 0.08); }
+.quick-slider .icon-button:active { background-color: rgba(0, 0, 0, 0.12); }
+.slider { -barlevel-background-color: rgba(0, 0, 0, 0.14); }
+
+.toggle-switch { background-color: rgba(0, 0, 0, 0.14); }
+.toggle-switch:hover { background-color: rgba(0, 0, 0, 0.20); }
+
+.quick-toggle-has-menu .quick-toggle:checked .quick-toggle-icon { background-color: rgba(255, 255, 255, 0.30); }
+
+.popup-menu-content,
+.background-menu .popup-menu-content { background-color: rgba(255, 255, 255, 0.55); }
+.popup-menu-content.quick-settings,
+.quick-settings { background-color: rgba(255, 255, 255, 0.55); }
+.popup-menu .popup-menu-item:focus,
+.popup-menu .popup-menu-item:hover,
+.popup-menu .popup-menu-item:selected { background-color: rgba(0, 0, 0, 0.08) !important; }
+.popup-menu .popup-menu-item:active,
+.popup-menu .popup-menu-item.selected:active { background-color: rgba(0, 0, 0, 0.12) !important; }
+.popup-sub-menu { background-color: rgba(0, 0, 0, 0.04); }
+.popup-separator-menu-item .popup-separator-menu-item-separator,
+.popup-menu .popup-separator-menu-item .popup-separator-menu-item-separator { background-color: rgba(0, 0, 0, 0.10); }
+
+.popup-menu .message,
+.message {
+  background-color: rgba(255, 255, 255, 0.55);
+  border-color: rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10) !important;
+  color: #1d1d1f;
+}
+.popup-menu .message:hover, .popup-menu .message:focus,
+.message:hover, .message:focus { background-color: rgba(255, 255, 255, 0.70); border-color: rgba(0, 0, 0, 0.10); }
+.popup-menu .message:active, .message:active { background-color: rgba(255, 255, 255, 0.80); }
+.popup-menu .message:second-in-stack, .message:second-in-stack { background-color: rgba(255, 255, 255, 0.40) !important; border-color: rgba(0, 0, 0, 0.05) !important; }
+.popup-menu .message:lower-in-stack, .message:lower-in-stack { background-color: rgba(255, 255, 255, 0.30) !important; border-color: rgba(0, 0, 0, 0.03) !important; }
+.message .message-header { color: rgba(0, 0, 0, 0.6); }
+.message .message-header .message-header-content .message-source-title { color: rgba(0, 0, 0, 0.75); }
+.message .message-box .message-content { color: rgba(0, 0, 0, 0.85); }
+.message .message-box .message-content .message-title { color: #1d1d1f; }
+
+.notification-banner { background-color: rgba(250, 250, 252, 0.88); color: #1d1d1f; }
+.notification-banner .message-close-button,
+.message .message-close-button { background-color: rgba(0, 0, 0, 0.08); }
+.notification-buttons-bin .button,
+.message .button { background-color: rgba(0, 0, 0, 0.07); color: #1d1d1f; }
+.notification-buttons-bin .button:hover,
+.message .button:hover { background-color: rgba(0, 0, 0, 0.12); }
+
+
+/* Notification text on light cards, in the calendar and as banners: the
+ * glass picks text colour from what is behind it, not from the card. */
+.liquid-glass-menu-root.liquid-glass-light .message StLabel,
+.notification-banner StLabel,
+.message .message-box .message-content StLabel {
+  color: #1d1d1f !important;
+}
+.liquid-glass-menu-root.liquid-glass-light .message .message-header StLabel,
+.notification-banner .message-header StLabel {
+  color: rgba(0, 0, 0, 0.6) !important;
+}
+.notification-banner .message-close-button StIcon,
+.liquid-glass-menu-root.liquid-glass-light .message-close-button StIcon { color: #1d1d1f !important; }
+
+/* Round buttons on light glass. */
+.quick-settings .icon-button,
+.quick-settings-system-item .icon-button,
+.quick-slider .icon-button {
+  background-color: rgba(255, 255, 255, 0.55) !important;
+  color: #1d1d1f !important;
+}
+.quick-settings .icon-button:hover,
+.quick-slider .icon-button:hover { background-color: rgba(255, 255, 255, 0.80) !important; }
+.quick-toggle-has-menu .quick-toggle-separator { background-color: rgba(0, 0, 0, 0.12); }
+.quick-toggle-has-menu:checked .quick-toggle-separator { background-color: rgba(255, 255, 255, 0.35); }
+
+/* Quick Settings tiles: Light style; one pill per tile. Tiles with an arrow are painted on
+ * the outer box; the toggle and the arrow inside it stay clear. */
+.quick-toggle { background-color: rgba(255, 255, 255, 0.55) !important; box-shadow: none !important; }
+.quick-toggle:hover { background-color: rgba(255, 255, 255, 0.75) !important; }
+.quick-toggle-has-menu { background-color: rgba(255, 255, 255, 0.55) !important; border-radius: 999px; }
+.quick-toggle-has-menu .quick-toggle,
+.quick-toggle-has-menu .quick-toggle:hover,
+.quick-toggle-has-menu .quick-toggle:checked,
+.quick-toggle-has-menu .quick-toggle-menu-button,
+.quick-toggle-has-menu .quick-toggle-menu-button:checked { background-color: transparent !important; box-shadow: none !important; }
+.quick-toggle-has-menu .quick-toggle-menu-button:hover { background-color: rgba(127, 127, 127, 0.18) !important; }
+.quick-toggle:checked,
+.quick-toggle:checked:hover,
+.quick-toggle-has-menu:checked { background-color: -st-accent-color !important; }
+.quick-toggle:checked,
+.quick-toggle-has-menu:checked .quick-toggle,
+.quick-toggle-has-menu:checked .quick-toggle-menu-button { color: -st-accent-fg-color !important; }
+
+.quick-toggle,
+.quick-toggle-has-menu .quick-toggle,
+.quick-toggle-has-menu .quick-toggle-menu-button { color: #1d1d1f; }
+.app-menu .popup-menu-content,
+.background-menu .popup-menu-content { background-color: rgba(250, 250, 252, 0.85); }
+
+/* ---- Overview in Light style: light glass and dark text, the same as on the
+ * desktop (GNOME keeps the overview dark otherwise). ---- */
+#panel:overview .panel-button,
+#panel:overview .panel-button.clock-display { color: #1d1d1f; }
+#panel:overview .panel-button#panelActivities .workspace-dot { background-color: #1d1d1f; }
+.search-entry { background-color: rgba(255, 255, 255, 0.65); color: #1d1d1f; }
+.search-entry:hover, .search-entry:focus { background-color: rgba(255, 255, 255, 0.80); color: #1d1d1f; }
+.search-entry StLabel.hint-text { color: rgba(0, 0, 0, 0.5); }
+.search-entry StIcon { color: rgba(0, 0, 0, 0.6); }
+.search-section-content { background-color: rgba(255, 255, 255, 0.55); color: #1d1d1f; }
+.list-search-result, .search-provider-icon { color: #1d1d1f; }
+.list-search-result .list-search-result-description { color: rgba(0, 0, 0, 0.55); }
+.list-search-result:hover, .search-provider-icon:hover { background-color: rgba(0, 0, 0, 0.06); color: #1d1d1f; }
+.list-search-result:selected, .list-search-result:highlighted,
+.search-provider-icon:selected, .search-provider-icon:highlighted { background-color: rgba(0, 0, 0, 0.10); color: #1d1d1f; }
+.search-statustext { color: rgba(0, 0, 0, 0.7); }
+.overview-tile, .grid-search-result { color: #1d1d1f; }
+.overview-tile:hover, .grid-search-result:hover { background-color: rgba(255, 255, 255, 0.35); color: #1d1d1f; }
+.overview-tile:selected, .overview-tile:highlighted, .overview-tile:checked, .overview-tile:focus,
+.grid-search-result:selected, .grid-search-result:highlighted, .grid-search-result:checked,
+.grid-search-result:focus { background-color: rgba(255, 255, 255, 0.50); color: #1d1d1f; }
+.app-folder { background-color: rgba(255, 255, 255, 0.40); }
+.app-folder-dialog { background-color: rgba(246, 246, 248, 0.88); color: #1d1d1f; }
+.page-indicator .page-indicator-icon { background-color: rgba(0, 0, 0, 0.5); }
+.workspace-thumbnail-indicator { border-color: #1d1d1f; }
+.page-navigation-arrow { background-color: rgba(255, 255, 255, 0.55); color: #1d1d1f; }
+.page-navigation-arrow:hover { background-color: rgba(255, 255, 255, 0.75); }

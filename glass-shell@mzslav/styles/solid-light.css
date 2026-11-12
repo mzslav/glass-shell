@@ -1,0 +1,21 @@
+/*
+ * Glass Shell — Performance mode surfaces in Light style (after solid.css).
+ */
+
+#panel { background-color: rgba(246, 246, 248, 0.96) !important; }
+
+.popup-menu-content,
+.background-menu .popup-menu-content,
+.app-menu .popup-menu-content,
+.popup-menu-content.quick-settings,
+.quick-settings,
+.datemenu-popover,
+.quick-toggle-menu {
+  background-color: #fafafb !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.notification-banner,
+.message { background-color: #ffffff !important; }
+
+.osd-window { background-color: #fafafb !important; }

@@ -1,0 +1,94 @@
+/*
+ * Glass Shell — the dock (custom/glassDock.js).
+ * Loaded while "enable-own-dock" is on. The glass itself is drawn behind
+ * .dash-background by the engine; these rules only shape what sits on it.
+ */
+
+/* No painted background: the glass is the background. Padding here is the
+ * room between the icons and the glass edge. */
+#glassShellDock #dash {
+  padding: 0;
+}
+
+#glassShellDock #dash .dash-background {
+  background-color: transparent;
+  background-image: none;
+  box-shadow: none;
+  border: none;
+  border-radius: 24px;
+  margin-bottom: 0;
+  padding: 6px 6px;
+}
+
+/* Icons: no tile behind them, a soft light on hover like macOS. */
+#glassShellDock #dash .dash-item-container .show-apps,
+#glassShellDock #dash .dash-item-container .overview-tile {
+  margin: 0 1px;
+  padding: 4px 3px 6px 3px;
+}
+
+#glassShellDock #dash .dash-item-container .show-apps .overview-icon,
+#glassShellDock #dash .dash-item-container .overview-tile .overview-icon {
+  background-color: transparent;
+  border-radius: 14px;
+  padding: 4px;
+}
+
+#glassShellDock #dash .dash-item-container .show-apps:hover .overview-icon,
+#glassShellDock #dash .dash-item-container .overview-tile:hover .overview-icon {
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+#glassShellDock #dash .dash-item-container .show-apps:active .overview-icon,
+#glassShellDock #dash .dash-item-container .overview-tile:active .overview-icon,
+#glassShellDock #dash .dash-item-container .show-apps:checked .overview-icon {
+  background-color: rgba(255, 255, 255, 0.22);
+}
+
+#glassShellDock #dash .dash-item-container .show-apps:focus .overview-icon,
+#glassShellDock #dash .dash-item-container .overview-tile:focus .overview-icon {
+  box-shadow: none !important;
+  background-color: rgba(255, 255, 255, 0.10);
+}
+
+/* Running indicator: a small dot under the icon. */
+#glassShellDock #dash .dash-item-container .app-grid-running-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 4px;
+  offset-y: -2px;
+  /* The system accent colour (Settings → Appearance), in Light and Dark style. */
+  background-color: -st-accent-color;
+}
+
+#glassShellDock #dash .dash-separator {
+  margin: 8px 4px;
+  background-color: rgba(255, 255, 255, 0.22);
+}
+
+/* Performance mode: no glass behind the dock, so it paints a solid pill. */
+#glassShellDock.solid #dash .dash-background {
+  background-color: rgba(34, 34, 38, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+#glassShellDock.solid.light #dash .dash-background {
+  background-color: rgba(246, 246, 248, 0.94);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Light style: dark "Show Apps" grid and a dark hover, readable on light glass. */
+#glassShellDock.light #dash .dash-item-container .show-apps .overview-icon { color: #1d1d1f; }
+#glassShellDock.light #dash .dash-item-container .show-apps:hover .overview-icon,
+#glassShellDock.light #dash .dash-item-container .overview-tile:hover .overview-icon { background-color: rgba(0, 0, 0, 0.08); }
+#glassShellDock.light #dash .dash-item-container .show-apps:checked .overview-icon { background-color: rgba(0, 0, 0, 0.12); }
+#glassShellDock.light #dash .dash-separator { background-color: rgba(0, 0, 0, 0.18); }
+
+
+/* Window previews above an icon (custom/dockPreviews.js). */
+.glass-shell-previews .popup-menu-content { padding: 8px; }
+.glass-shell-previews-row { spacing: 8px; }
+.glass-shell-preview { border-radius: 14px; padding: 8px; background-color: transparent; }
+.glass-shell-preview:hover, .glass-shell-preview:focus { background-color: rgba(255, 255, 255, 0.12); }
+.glass-shell-preview:active { background-color: rgba(255, 255, 255, 0.20); }
+.glass-shell-preview-box { spacing: 6px; }
+.glass-shell-preview-title { font-size: 9pt; max-width: 220px; }

@@ -1,0 +1,53 @@
+/*
+ * Glass Shell — theme overrides, part of the generated shell theme
+ * (custom/themeBuilder.js). Sizes here are scaled with ui-scale too.
+ * Put rules here that should apply in both Light and Dark style.
+ */
+
+/* Menus without glass behind them (right-click menus, dock icon menus):
+ * translucent instead of GNOME's solid grey. */
+.app-menu .popup-menu-content,
+.background-menu .popup-menu-content {
+  background-color: rgba(28, 28, 32, 0.82);
+}
+
+/* Quick Settings tiles: one pill per tile. Tiles with an arrow are painted on
+ * the outer box; the toggle and the arrow inside it stay clear. */
+.quick-toggle { background-color: rgba(255, 255, 255, 0.10) !important; box-shadow: none !important; }
+.quick-toggle:hover { background-color: rgba(255, 255, 255, 0.16) !important; }
+.quick-toggle-has-menu { background-color: rgba(255, 255, 255, 0.10) !important; border-radius: 999px; }
+.quick-toggle-has-menu .quick-toggle,
+.quick-toggle-has-menu .quick-toggle:hover,
+.quick-toggle-has-menu .quick-toggle:checked,
+.quick-toggle-has-menu .quick-toggle-menu-button,
+.quick-toggle-has-menu .quick-toggle-menu-button:checked { background-color: transparent !important; box-shadow: none !important; }
+.quick-toggle-has-menu .quick-toggle-menu-button:hover { background-color: rgba(127, 127, 127, 0.18) !important; }
+.quick-toggle:checked,
+.quick-toggle:checked:hover,
+.quick-toggle-has-menu:checked { background-color: -st-accent-color !important; }
+.quick-toggle:checked,
+.quick-toggle-has-menu:checked .quick-toggle,
+.quick-toggle-has-menu:checked .quick-toggle-menu-button { color: -st-accent-fg-color !important; }
+
+/* ---- Overview: search, results, app grid ----
+ * GNOME keeps these dark grey even in Light style. Here they are glass-like
+ * (translucent over the blurred wallpaper); styles/macos-light.css makes them
+ * light in Light style. */
+.search-entry { background-color: rgba(255, 255, 255, 0.14); border: none; }
+.search-entry:hover { background-color: rgba(255, 255, 255, 0.20); }
+.search-entry:focus { background-color: rgba(255, 255, 255, 0.22); }
+.search-section-content { background-color: rgba(255, 255, 255, 0.10); border: none; box-shadow: none; }
+.list-search-result, .search-provider-icon { background-color: transparent; }
+.list-search-result:hover, .search-provider-icon:hover { background-color: rgba(255, 255, 255, 0.10); }
+.list-search-result:selected, .list-search-result:highlighted,
+.search-provider-icon:selected, .search-provider-icon:highlighted { background-color: rgba(255, 255, 255, 0.16); }
+.overview-tile:hover, .grid-search-result:hover { background-color: rgba(255, 255, 255, 0.10); }
+.overview-tile:selected, .overview-tile:highlighted, .overview-tile:checked,
+.grid-search-result:selected, .grid-search-result:highlighted, .grid-search-result:checked,
+.overview-tile:focus, .grid-search-result:focus { background-color: rgba(255, 255, 255, 0.16); box-shadow: none !important; }
+.app-folder { background-color: rgba(255, 255, 255, 0.10); }
+.app-folder-dialog { background-color: rgba(28, 28, 32, 0.80); }
+
+/* App grid page arrows: glass circle instead of solid grey. */
+.page-navigation-arrow { background-color: rgba(255, 255, 255, 0.14); }
+.page-navigation-arrow:hover { background-color: rgba(255, 255, 255, 0.22); }

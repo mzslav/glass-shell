@@ -1,0 +1,26 @@
+/*
+ * Glass Shell — Performance mode surfaces (custom/performanceMode.js).
+ * Part of the generated theme only while Performance mode is on: there is no
+ * glass behind anything, so surfaces get solid colours instead.
+ * Light style: styles/solid-light.css (loaded after this one).
+ */
+
+#panel { background-color: rgba(24, 24, 28, 0.96) !important; }
+
+.popup-menu-content,
+.background-menu .popup-menu-content,
+.app-menu .popup-menu-content,
+.popup-menu-content.quick-settings,
+.quick-settings,
+.datemenu-popover,
+.quick-toggle-menu {
+  background-color: #222226 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.notification-banner,
+.message { background-color: #2e2e33 !important; }
+
+.osd-window { background-color: #222226 !important; }
+
+/* The dock's solid look is in styles/dock.css (#glassShellDock.solid). */

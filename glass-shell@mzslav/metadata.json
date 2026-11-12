@@ -1,0 +1,18 @@
+{
+  "name": "Glass Shell",
+  "description": "A liquid-glass, macOS-style desktop for GNOME Shell: a glass top bar, its own bottom dock (intellihide, click to minimise, window previews), glass menus, Quick Settings, notifications and OSDs, a blurred overview and lock screen, a compact scalable shell theme, light/dark wallpaper pairs and a performance mode that turns the glass off on Power Saver.\n\nBased on Liquid Glass by Ryosuke Watanabe and Aura Glass styles.\n\nThe optional weather widget asks Open-Meteo (open-meteo.com) for the forecast only when GNOME Weather is not installed and a place has been chosen in the preferences. The launcher writes a calculation's result to the clipboard only when you choose it; it never reads the clipboard.",
+  "uuid": "glass-shell@mzslav",
+  "settings-schema": "org.gnome.shell.extensions.glass-shell",
+  "shell-version": [
+    "47",
+    "48",
+    "49",
+    "50",
+    "51"
+  ],
+  "url": "https://github.com/mzslav/glass-shell",
+  "session-modes": [
+    "user",
+    "unlock-dialog"
+  ]
+}

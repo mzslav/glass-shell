@@ -1,0 +1,514 @@
+/*
+ * Glass Shell — macOS-style controls
+ * ----------------------------------
+ * Loaded on top of the shell theme while "enable-macos-styles" is on
+ * (Preferences → Effects → Style). Edit freely, then log out and back in
+ * (or toggle the switch off and on) to see the change.
+ *
+ * Adapted from Aura Glass (https://github.com/DevWebeloper/aura-glass),
+ * MIT License, Copyright (c) 2026 aura-glass contributors.
+ * Files: css/shell-10-quick-settings.css, shell-20-popup-menus.css,
+ *        shell-30-notifications.css, shell-40-quick-toggles.css
+ *
+ * Surfaces that get glass (top bar, Quick Settings, calendar, notifications)
+ * are cleared to transparent by stylesheet.css with !important, so the
+ * container backgrounds below only show where there is no glass.
+ */
+
+/* ===================== from shell-10-quick-settings.css ===================== */
+/* ---------- Quick Settings sliders (brightness / volume) ----------
+ * Upstream used padding: 1.636em 1.5em 1.636em 0.818em, which is what made
+ * these rows so tall. Tightened to a macOS-style capsule.
+ */
+.quick-slider {
+  padding: 0.45em 1em 0.45em 0.5em;
+  border-radius: 26px;
+  background-color: rgba(255, 255, 255, 0.10);
+  box-shadow: none !important;
+}
+
+.quick-slider > StBoxLayout {
+  spacing: 8px;
+}
+
+.quick-slider .icon-button,
+.quick-slider .message .message-header .message-expand-button,
+.quick-slider .message .message-header .message-close-button {
+  padding: 0.35em;
+  border-radius: 9999px;
+}
+
+.quick-slider .icon-button:hover {
+  background-color: rgba(255, 255, 255, 0.16);
+}
+
+.quick-slider .icon-button:active {
+  background-color: rgba(255, 255, 255, 0.22);
+}
+
+.quick-slider .slider-bin {
+  min-height: 18px;
+  padding: 0 10px 0 4px;
+}
+
+/* Round white knob on a thin track, the way macOS draws it. `height` is the
+ * hit area, `-barlevel-height` the visible track, so the knob can overhang.
+ */
+.slider {
+  height: 18px;
+  -barlevel-height: 8px;
+  -slider-handle-radius: 8px;
+  -barlevel-background-color: rgba(255, 255, 255, 0.18);
+  -barlevel-active-background-color: #ffffff;
+}
+
+/* ---------- Quick Settings icons ----------
+ * Upstream drew 16px glyphs inside 7px of padding, so the icons floated in
+ * oversized targets. Bigger glyph, tighter box — the target size barely moves.
+ */
+.quick-settings .icon-button,
+.quick-settings .button {
+  padding: 5px;
+}
+
+.quick-settings .icon-button StIcon,
+.quick-settings .button StIcon {
+  icon-size: 20px;
+}
+
+.quick-toggle .quick-toggle-icon {
+  icon-size: 20px;
+}
+
+.quick-slider .icon-button StIcon {
+  icon-size: 18px;
+}
+
+/* ===================== from shell-20-popup-menus.css ===================== */
+/* ---------- Popup menus ----------
+ * Right-click menus and top-bar menus (accessibility, power, tray icons) were
+ * rgba(0, 0, 0, 0.72) — near-solid black — with a directional inset highlight
+ * that only lit the top-left corner. Both are gone: the fill is glass, and the
+ * blur behind it is the whole separation.
+ *
+ * No drop shadow: these menus are translucent and sit over a blurred panel, so
+ * a shadow does not read as depth, it reads as a dark rectangle stamped around
+ * a rounded menu — the corners are exactly where it shows. Quick Settings has
+ * been shadowless since it got its own block below, which is why it looked
+ * right while the tray menus next to it did not.
+ */
+.background-menu {
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.popup-menu-content,
+.background-menu .popup-menu-content {
+  background-color: rgba(0, 0, 0, 0.42);
+  border: 1px solid transparent;
+  border-radius: 26px;
+  padding: 6px;
+  margin: 0 !important;
+  box-shadow: none;
+}
+
+/* The date menu — the calendar and notification list under the clock — and the
+ * quick-toggle menu — the Wi-Fi/Bluetooth device list that expands under a
+ * toggle's arrow — are each a .popup-menu-content, and the theme singles them
+ * out at `border-radius: 22px !important` so they paint a tighter corner than
+ * every other menu. The blur behind them then shows its own corner outside the
+ * fill's, which reads as two stacked surfaces rather than one menu.
+ *
+ * The value is 33 and not 26, which is not guessable from the name. Blur My
+ * Shell groups both surfaces with Quick Settings, not with menus —
+ * components/popup/targets.js:
+ *
+ *     key: 'quick-settings-corner-radius',
+ *     style_classes: ['quick-settings', 'quick-toggle-menu', 'datemenu-popover'],
+ *
+ * so both are blurred at quick-settings-corner-radius, while every other
+ * .popup-menu-content is blurred at menu-corner-radius. quick-toggle-menu had
+ * no rule here at all until now, which is the same fault as the date menu's —
+ * fill at 26, blur at 33 — just never written down.
+ *
+ * A painted radius must always equal the blur radius behind it. !important is
+ * required to answer the theme's own, and this tracks
+ * blur-my-shell/popup/quick-settings-corner-radius in dconf/core.ini.
+ */
+.datemenu-popover,
+.quick-toggle-menu {
+  border-radius: 33px !important;
+}
+
+/* ---------- Quick Settings panel ----------
+ * The panel shares .popup-menu-content with every other menu, so it needs its
+ * own treatment afterwards. Dropping the menu.svg border-image is deliberate:
+ * a 9-slice image paints *instead of* the background, so the glass fill below
+ * only reaches the surface once it is gone.
+ */
+.popup-menu-content.quick-settings,
+.quick-settings {
+  background: none;
+  background-color: rgba(0, 0, 0, 0.46);
+  border-image: none;
+  border: 1px solid transparent;
+  border-radius: 33px !important;
+  box-shadow: none;
+  padding-top: 20px !important;
+}
+
+.popup-menu .popup-menu-item {
+  padding: 6px 12px !important;
+  margin: 2px 4px !important;
+  border-radius: 12px !important;
+  spacing: 8px !important;
+}
+
+.popup-menu .popup-menu-item:focus,
+.popup-menu .popup-menu-item:hover,
+.popup-menu .popup-menu-item:selected {
+  background-color: rgba(255, 255, 255, 0.16) !important;
+}
+
+.popup-menu .popup-menu-item:active,
+.popup-menu .popup-menu-item.selected:active {
+  background-color: rgba(255, 255, 255, 0.22) !important;
+}
+
+/* Submenus sit on top of an already translucent parent, so they only need a
+ * light lift rather than a second full layer of tint.
+ */
+.popup-sub-menu {
+  background-color: rgba(255, 255, 255, 0.06);
+  border: none;
+  box-shadow: none;
+}
+
+/* Keep the separators from reading as hard black lines on a glass surface. */
+.popup-separator-menu-item,
+.popup-menu .popup-separator-menu-item {
+  margin: 4px 6px !important;
+  padding: 0 !important;
+}
+
+.popup-separator-menu-item .popup-separator-menu-item-separator,
+.popup-menu .popup-separator-menu-item .popup-separator-menu-item-separator {
+  background-color: rgba(255, 255, 255, 0.12);
+  height: 1px;
+}
+
+/* ===================== from shell-30-notifications.css ===================== */
+/* ---------- Notifications ----------
+ * Sleek dark obsidian glass cards with subtle luminous edge highlights and high contrast.
+ * Designed to feel like native floating glass cards on the calendar/datemenu popover.
+ */
+.popup-menu .message,
+.message {
+  background-color: rgba(20, 20, 26, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+  color: #ffffff;
+  padding: 10px 14px;
+}
+
+.popup-menu .message:hover,
+.popup-menu .message:focus,
+.message:hover,
+.message:focus {
+  background-color: rgba(30, 30, 38, 0.68);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.popup-menu .message:active,
+.message:active {
+  background-color: rgba(38, 38, 48, 0.78);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Stacked notifications: when multiple notifications arrive from the same app,
+ * the lower cards peek out behind the top card with gentle translucent dark glass steps.
+ *
+ * Neither step carries a shadow. Whenever Blur My Shell's popup component is
+ * on (popup or notification blur), it clips each lower card to the sliver that
+ * shows (set_clip() in its message_stacks.js), and a clip cuts a shadow at the
+ * card's box: the soft shadow filled the space outside the rounded corners and
+ * ended in a hard rectangle, a square band under the second card's rounded one.
+ */
+.popup-menu .message:second-in-stack,
+.message:second-in-stack {
+  background-color: rgba(14, 14, 18, 0.40) !important;
+  background-image: none !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  border-radius: 20px;
+  box-shadow: none !important;
+}
+
+.popup-menu .message:lower-in-stack,
+.message:lower-in-stack {
+  background-color: rgba(10, 10, 14, 0.30) !important;
+  background-image: none !important;
+  border: 1px solid rgba(255, 255, 255, 0.03) !important;
+  border-radius: 20px;
+  box-shadow: none !important;
+}
+
+/* Header typography and icons */
+.message .message-header {
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0 2px 4px 2px;
+  spacing: 6px;
+}
+
+.message .message-header .message-header-content .message-source-title {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.message .message-box .message-content {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.message .message-box .message-content .message-title {
+  color: #ffffff;
+}
+
+/* The arriving banner floats over whatever is on screen — a wallpaper, a
+ * bright window, video — so it carries a near-solid ground instead of the
+ * light lift used inside the calendar popup. No drop shadow, matching the
+ * rest of the desktop.
+ */
+.notification-banner {
+  background-color: rgba(22, 23, 27, 0.86);
+  border: 1px solid transparent;
+  border-radius: 20px;
+  box-shadow: none;
+  color: #ffffff;
+}
+
+/* The app name is the one piece of identity in a notification, so it takes the
+ * accent. Everything else stays neutral so the message itself still leads.
+ */
+.notification-banner .message-header .message-header-content .message-source-title,
+.message .message-header .message-header-content .message-source-title {
+  color: -st-accent-color;
+}
+
+.notification-banner .message-close-button,
+.message .message-close-button {
+  box-shadow: none !important;
+  background-color: rgba(255, 255, 255, 0.10);
+  border-radius: 9999px;
+}
+
+.notification-banner .message-close-button:hover,
+.message .message-close-button:hover {
+  background-color: -st-accent-color;
+  color: -st-accent-fg-color;
+}
+
+/* Action buttons under a notification follow the same control ladder as the
+ * rest of the shell rather than being flat text.
+ */
+.notification-buttons-bin .button,
+.message .button {
+  background-color: rgba(255, 255, 255, 0.10);
+  border: none;
+  border-radius: 9999px;
+  color: #ffffff;
+}
+
+.notification-buttons-bin .button:hover,
+.message .button:hover {
+  background-color: rgba(255, 255, 255, 0.16);
+}
+
+/* ===================== from shell-40-quick-toggles.css ===================== */
+/* ---------- TG-1  Adwaita-native toggles in the shell ----------
+ * -st-accent-color resolves to whatever accent is set in Settings (currently
+ * pink), so the shell follows the same accent as GTK apps instead of the
+ * theme's hardcoded macOS green / #0091ff.
+ */
+.toggle-switch {
+  background-color: rgba(255, 255, 255, 0.18);
+}
+
+.toggle-switch:checked {
+  background-color: -st-accent-color;
+}
+
+.toggle-switch:hover {
+  background-color: rgba(255, 255, 255, 0.26);
+}
+
+.toggle-switch:checked:hover {
+  background-color: -st-accent-color;
+}
+
+/* Sliders move from the macOS all-white fill to an accent fill, which is what
+ * makes them read as Adwaita. The tightened padding from earlier is kept.
+ */
+.slider {
+  -barlevel-active-background-color: -st-accent-color;
+}
+
+/* Checked quick toggles follow the accent rather than the theme's fixed blue.
+ * The theme sets `background-color: white !important` here, so without a
+ * matching !important the fill stayed white while the label turned white too —
+ * an unreadable white-on-white tile.
+ */
+.quick-toggle:checked {
+  background-color: -st-accent-color !important;
+  color: -st-accent-fg-color;
+}
+
+.quick-toggle:checked:hover {
+  background-color: -st-accent-color !important;
+  color: -st-accent-fg-color;
+}
+
+.quick-toggle:checked:active {
+  background-color: -st-accent-color !important;
+  color: -st-accent-fg-color;
+}
+
+.quick-toggle-has-menu .quick-toggle:checked .quick-toggle-icon {
+  background-color: -st-accent-color;
+  color: -st-accent-fg-color;
+}
+
+/* ---------- Quick toggle icon discs ----------
+ * The glyph sat in a 3.4em disc, so it floated in the middle of a lot of
+ * empty colour. Smaller disc, larger glyph — the ring reads as an icon
+ * treatment rather than a badge. Both !important because the theme declares
+ * the disc size that way.
+ *
+ * The disc is also what sets the tile's height: nothing else in the row is
+ * taller, so `min-height` on it is the row height. At 2.6em the tiles were
+ * tall enough that "Bluetooth" and "Power Mode" ellipsised — the disc was
+ * spending width the label needed. 2em buys back both at once.
+ */
+.quick-toggle-has-menu .quick-toggle .quick-toggle-icon {
+  min-height: 2em !important;
+  min-width: 2em !important;
+}
+
+.quick-toggle .quick-toggle-icon {
+  icon-size: 18px;
+}
+
+/* The theme's `padding: 0 12px` on a tile that is already tight on width is
+ * 24px the label never gets. The arrow keeps its own hit area, so this only
+ * takes from the empty margins.
+ */
+.quick-toggle,
+.quick-toggle.button {
+  padding: 0 6px;
+}
+
+/* Labels ellipsise before they run out of room because the title reserves a
+ * width it does not need. Letting both lines shrink to their content is what
+ * lets "Bluetooth" and "Power Mode" render in full when the tile can hold them.
+ */
+.quick-toggle .quick-toggle-title,
+.quick-toggle .quick-toggle-subtitle {
+  min-width: 0;
+  padding-right: 2px;
+}
+
+.quick-toggle.power-item .quick-toggle-title {
+  padding-right: 2px;
+}
+
+.quick-settings .icon-button,
+.quick-settings .button {
+  padding: 4px;
+}
+
+.quick-settings .icon-button StIcon,
+.quick-settings .button StIcon {
+  icon-size: 22px;
+}
+
+/* ---------- Menu-toggle tile metrics ----------
+ * The theme fixes these tiles at min-height 3.4em and max-width 13em, so the
+ * height is set here and nowhere else — shrinking the icon disc moved it a
+ * little only because the disc had grown taller than the row.
+ *
+ * The width is the reason labels ellipsise. The tile cannot grow past 13em, and
+ * the arrow spends 2.4em plus a 1em margin on each side — roughly a third of
+ * the tile before the label is given anything, which is why "Bluetooth" cut to
+ * "Blueto...". The arrow keeps its full 2.4em hit area; only the dead margin
+ * around it is reclaimed.
+ */
+.quick-toggle-has-menu {
+  min-height: 2.6em;
+}
+
+.quick-toggle-has-menu .quick-toggle-menu-button {
+  margin: 0.25em;
+}
+
+/* ---------- Menu-toggle tiles (Wi-Fi, Bluetooth, Wired, Power…) ----------
+ * These tiles are two widgets in one pill: .quick-toggle on the left and a
+ * separate .quick-toggle-menu-button holding the arrow. The theme keeps the
+ * inner toggle transparent so the outer pill paints one continuous background
+ * underneath both. Filling .quick-toggle:checked with the accent broke that —
+ * the accent covered only the left widget and stopped in a hard edge before
+ * the arrow.
+ *
+ * The outer pill has its own :checked state, so the fill goes there instead:
+ * the whole capsule takes the accent, arrow included, and there is no seam.
+ * Plain toggles with no menu (Night Light, Do Not Disturb, Airplane Mode) are
+ * a single widget and keep the fill on .quick-toggle:checked.
+ */
+
+
+/* On an accent pill the disc reads as a translucent well rather than a second
+ * block of the same colour.
+ */
+.quick-toggle-has-menu .quick-toggle:checked .quick-toggle-icon {
+  background-color: rgba(255, 255, 255, 0.28);
+  color: -st-accent-fg-color;
+}
+
+
+
+
+
+/* ===================== Glass Shell fixes ===================== */
+
+/* One colour per tile: no separate square behind the icon and no darker
+ * strip behind the arrow (the "three colours" on Wired / Wi-Fi). */
+.quick-toggle .quick-toggle-icon,
+.quick-toggle:checked .quick-toggle-icon,
+.quick-toggle-has-menu .quick-toggle .quick-toggle-icon,
+.quick-toggle-has-menu .quick-toggle:checked .quick-toggle-icon {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+}
+.quick-toggle-has-menu .quick-toggle-separator { background-color: rgba(255, 255, 255, 0.14); width: 1px; }
+.quick-toggle-has-menu:checked .quick-toggle-separator { background-color: rgba(255, 255, 255, 0.25); }
+
+/* Round buttons (screenshot, settings, lock, power, slider icons). */
+.quick-settings .icon-button,
+.quick-settings-system-item .icon-button,
+.quick-slider .icon-button {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: none !important;
+  border-radius: 999px;
+}
+.quick-settings .icon-button:hover,
+.quick-slider .icon-button:hover { background-color: rgba(255, 255, 255, 0.20) !important; }
+
+/* Calendar: no extra card behind the month grid — it sits on the glass. */
+.liquid-glass-menu-root .datemenu-calendar-column .calendar,
+.datemenu-calendar-column .calendar {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}

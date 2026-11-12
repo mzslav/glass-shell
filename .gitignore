@@ -1,0 +1,24 @@
+glass-shell@mzslav/sandbox-threejs
+glass-shell@mzslav/node_modules
+glass-shell@mzslav/files.py
+glass-shell@mzslav/tests
+glass-shell@mzslav/output.txt
+glass-shell@mzslav/backups/
+glass-shell@mzslav/liquid-glass.zip
+memo.md
+clutter-stage.c
+glass-shell@mzslav/output.pdf
+glass-shell@mzslav/make_pdf.py
+libblur-effect-1.0.so.1.1.0.c
+performance-plan.md
+pr33_diff.patch
+glass-shell@mzslav/*.shell-extension.zip
+glass-shell@mzslav/.ua/
+logs/
+tools/icon-sheet/out/
+glass-shell@mzslav/schemas/gschemas.compiled
+
+# Your own wallpapers stay local: pictures you did not make usually may not
+# be redistributed. Only the folder's README is in the repository.
+glass-shell@mzslav/wallpapers/*
+!glass-shell@mzslav/wallpapers/README.md
